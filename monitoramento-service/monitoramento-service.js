@@ -12,7 +12,7 @@ const Status = require("./model/monitoramento");
 
 const MongoClient = require("mongodb").MongoClient;
 const uri =
-    "mongodb+srv://gabriel:.Lasanhaico030519@cluster0.xfugt.mongodb.net/AlarmeDB?retryWrites=true&w=majority";
+    "mongodb+srv://gabriel:teste123@cluster0.xfugt.mongodb.net/AlarmeDB?retryWrites=true&w=majority";
 const database_name = "AlarmeDB";
 const collection_name = "Monitoramento";
 var db;
