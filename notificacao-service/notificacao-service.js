@@ -33,6 +33,7 @@ MongoClient.connect(
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Exibe a notificação na tela com base no ID do imóvel em que ocorreu a conexão
 app.get("/Notificacao/:idImovel", (req, res, next) => {
     axios
         .get(`http://localhost:8080/Cadastro/${req.params.idImovel}`)

@@ -59,7 +59,7 @@ app.get("/Cadastro", (req, res, next) => {
     });
 });
 
-// Obtém cadastro do usuário com base no id imovel
+// Obtém cadastro do imóvel com base em seu ID
 app.get("/Cadastro/:idImovel", (req, res, next) => {
     const result = db.findOne(
         { idImovel: req.params.idImovel },
@@ -95,7 +95,7 @@ app.put("/Cadastro/:idImovel", (req, res, next) => {
     );
 });
 
-// Remove cadastro de usuário
+// Remove cadastro do imóvel
 app.delete("/Cadastro/:idImovel", (req, res, next) => {
     db.deleteOne({ idImovel: req.params.idImovel }, (err, result) => {
         if (err) return console.log(`Error: ${err}`);

@@ -56,7 +56,7 @@ app.post("/Acionamento", (req, res, next) => {
     });
 });
 
-// Obtém todos os acionamentos
+// Obtém todos os acionamentos do alarme
 app.get("/Acionamento", (req, res, next) => {
     db.find({}).toArray((err, result) => {
         if (err) return console.log(`Error: ${err}`);
@@ -64,7 +64,7 @@ app.get("/Acionamento", (req, res, next) => {
     });
 });
 
-// Obtém acionamentos do usuário com base no id do imóvel
+// Obtém acionamentos com base no ID do imóvel
 app.get("/Acionamento/:idImovel", (req, res, next) => {
     const result = db
         .find({ idImovel: req.params.idImovel })

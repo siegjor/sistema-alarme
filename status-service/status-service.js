@@ -47,7 +47,7 @@ app.post("/Status", (req, res, next) => {
     });
 });
 
-// Obtém todos os acionamentos
+// Obtém todos os status de conexão
 app.get("/Status", (req, res, next) => {
     db.find({}).toArray((err, result) => {
         if (err) return console.log(`Error: ${err}`);
@@ -55,7 +55,7 @@ app.get("/Status", (req, res, next) => {
     });
 });
 
-// Obtém status da conexão à central do usuário com base no id do imovel
+// Obtém status de conexão com base no ID do imovel
 app.get("/Status/:idImovel", (req, res, next) => {
     const result = db
         .find({ idImovel: req.params.idImovel })

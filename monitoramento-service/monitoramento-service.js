@@ -62,7 +62,7 @@ app.get("/Monitoramento", (req, res, next) => {
     });
 });
 
-// Obtém as detecções com base no id do imóvel
+// Obtém as detecções com base no ID do imóvel
 app.get("/Monitoramento/:idImovel", (req, res, next) => {
     const result = db
         .find({ idImovel: req.params.idImovel })
