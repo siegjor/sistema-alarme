@@ -7,7 +7,7 @@ const StatusSchema = new Schema({
         max: 100,
     },
     idImovel: {
-        type: Number,
+        type: String,
         required: [true, "ID do imóvel obrigatório"],
     },
 });

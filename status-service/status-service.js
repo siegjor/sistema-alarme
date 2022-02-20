@@ -1,11 +1,10 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-// import * as cron from "node-cron";
 const app = express();
 
 let porta = 8070;
 app.listen(porta, () => {
-    console.log("Servidor em execução na porta: " + porta);
+    console.log(`Servidor do status em execução na porta: ${porta}`);
 });
 
 const Status = require("./model/status");
@@ -34,18 +33,6 @@ MongoClient.connect(
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-// function checkAlarmStatus() {
-//     var status = new Status({
-//         mensagem: req.body.mensagem,
-//         idImovel: req.body.idImovel,
-//     });
-
-//     db.insertOne(status, (err, result) => {
-//         if (err) return console.log(`Error: ${err}`);
-//         console.log(`Mensagem recebida: ${req.body.mensagem}`);
-//     });
-// }
 
 app.post("/Status", (req, res, next) => {
     var status = new Status({

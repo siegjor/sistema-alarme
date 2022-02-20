@@ -4,14 +4,9 @@ const Cadastro = require("./model/cadastro");
 
 const app = express();
 
-// Hello
-app.get("/hello", (req, res) => {
-    res.send("Hello World");
-});
-
 let porta = 8080;
 app.listen(porta, () => {
-    console.log("Servidor em execução na porta: " + porta);
+    console.log(`Servidor do cadastro em execução na porta: ${porta}`);
 });
 
 const MongoClient = require("mongodb").MongoClient;
@@ -70,7 +65,6 @@ app.get("/Cadastro/:idImovel", (req, res, next) => {
         { idImovel: req.params.idImovel },
         (err, result) => {
             if (err) return console.log("Proprietário não encontrado");
-            console.log(result);
             res.send(result);
         }
     );

@@ -5,7 +5,7 @@ const axios = require("axios");
 
 let porta = 8060;
 app.listen(porta, () => {
-    console.log("Servidor em execução na porta: " + porta);
+    console.log(`Servidor do monitoramento em execução na porta: ${porta}`);
 });
 
 const Status = require("./model/monitoramento");
@@ -44,8 +44,8 @@ app.post("/Monitoramento", (req, res, next) => {
 
     db.insertOne(status, (err, result) => {
         if (err) return console.log(`Error: ${err}`);
-        console.log(`Pessoa identificada pelo sensor ${req.body.idSensor}`);
-        res.send(`Pessoa identificada pelo sensor ${req.body.idSensor}`);
+        console.log(`Presença detectada pelo sensor ${req.body.idSensor}`);
+        res.send(`Presença detectada pelo sensor ${req.body.idSensor}`);
     });
 
     axios.get(`http://localhost:8040/Notificacao/${req.body.idImovel}`).then(
@@ -54,7 +54,7 @@ app.post("/Monitoramento", (req, res, next) => {
     );
 });
 
-// Obtém todos as detecções
+// Obtém todas as detecções
 app.get("/Monitoramento", (req, res, next) => {
     db.find({}).toArray((err, result) => {
         if (err) return console.log(`Error: ${err}`);

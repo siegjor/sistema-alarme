@@ -5,7 +5,7 @@ const axios = require("axios");
 
 let porta = 8040;
 app.listen(porta, () => {
-    console.log("Servidor em execução na porta: " + porta);
+    console.log(`Servidor da notificação em execução na porta: ${porta}`);
 });
 
 const MongoClient = require("mongodb").MongoClient;
@@ -34,12 +34,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/Notificacao/:idImovel", (req, res, next) => {
-    console.log(req.params.idImovel);
     axios
         .get(`http://localhost:8080/Cadastro/${req.params.idImovel}`)
         .then((resp) => {
             console.log(
-                `Presença detectada! Informações para contato com o proprietário: \n\tID do imóvel: ${resp.data.idImovel}\n\tNome: ${resp.data.nome}\n\tTelefone: ${resp.data.telefone}\n\tEndereço: ${resp.data.endereco}`
+                `\nPresença detectada! Informações para contato com o proprietário: \n\tID do imóvel: ${resp.data.idImovel}\n\tNome: ${resp.data.nome}\n\tTelefone: ${resp.data.telefone}\n\tEndereço: ${resp.data.endereco}`
             );
         });
 });

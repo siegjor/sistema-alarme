@@ -5,7 +5,7 @@ const app = express();
 
 let porta = 8090;
 app.listen(porta, () => {
-    console.log("Servidor em execução na porta: " + porta);
+    console.log(`Servidor do acionamento em execução na porta: ${porta}`);
 });
 
 const Acionamento = require("./model/acionamento");
