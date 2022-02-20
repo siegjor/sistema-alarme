@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const CadastroSchema = new Schema({
     idImovel: {
-        type: Number,
+        type: String,
         required: [true, "ID do imóvel obrigatório"],
     },
     nome: {

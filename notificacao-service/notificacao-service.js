@@ -1,13 +1,12 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
+const axios = require("axios");
 
-let porta = 8050;
+let porta = 8040;
 app.listen(porta, () => {
     console.log("Servidor em execução na porta: " + porta);
 });
-
-const Cadastro = require("../model/cadastro");
 
 const MongoClient = require("mongodb").MongoClient;
 const uri =
@@ -34,21 +33,13 @@ MongoClient.connect(
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-exports.notificacao = function () {
-    app.get("/Cadastro/:idImovel", (req, res, next) => {
-        const idImovel = req.params.idImovel;
-        const nome = req.params.nome;
-        const telefone = req.params.telefone;
-        const endereco = req.params.endereco;
-
-        const result = db
-            .find({ idImovel: req.params.idImovel })
-            .toArray((err, result) => {
-                if (err) return console.log(`Error: ${err}`);
-                res.send(result);
-                console.log(
-                    `Pessoa identificada! Informações para contato com o proprietário: \nID do imóvel: ${idImovel}\nNome: ${nome}\nTelefone: ${telefone}\Endereço: ${endereco}`
-                );
-            });
-    });
-};
+app.get("/Notificacao/:idImovel", (req, res, next) => {
+    console.log(req.params.idImovel);
+    axios
+        .get(`http://localhost:8080/Cadastro/${req.params.idImovel}`)
+        .then((resp) => {
+            console.log(
+                `Presença detectada! Informações para contato com o proprietário: \n\tID do imóvel: ${resp.data.idImovel}\n\tNome: ${resp.data.nome}\n\tTelefone: ${resp.data.telefone}\n\tEndereço: ${resp.data.endereco}`
+            );
+        });
+});

@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
-const notificacao = require("../notificacao-service/notificacao-service");
+const axios = require("axios");
 
 let porta = 8060;
 app.listen(porta, () => {
@@ -47,7 +47,11 @@ app.post("/Monitoramento", (req, res, next) => {
         console.log(`Pessoa identificada pelo sensor ${req.body.idSensor}`);
         res.send(`Pessoa identificada pelo sensor ${req.body.idSensor}`);
     });
-    notificacao.notificacao();
+
+    axios.get(`http://localhost:8040/Notificacao/${req.body.idImovel}`).then(
+        (resp) => console.log(resp.data),
+        (error) => console.log("erro do then do request " + error)
+    );
 });
 
 // Obtém todos as detecções

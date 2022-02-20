@@ -10,7 +10,7 @@ const MonitoramentoSchema = new Schema({
         default: Date.now(),
     },
     idImovel: {
-        type: Number,
+        type: String,
         required: [true, "ID do imóvel obrigatório"],
     },
 });

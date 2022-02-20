@@ -64,21 +64,25 @@ app.get("/Cadastro", (req, res, next) => {
     });
 });
 
-// Obtém cadastro do usuário com base no CPF
-app.get("/Cadastro/:cpf", (req, res, next) => {
-    const result = db.findOne({ cpf: req.params.cpf }, (err, result) => {
-        if (err) return console.log("Proprietário não encontrado");
-        res.send(result);
-    });
+// Obtém cadastro do usuário com base no id imovel
+app.get("/Cadastro/:idImovel", (req, res, next) => {
+    const result = db.findOne(
+        { idImovel: req.params.idImovel },
+        (err, result) => {
+            if (err) return console.log("Proprietário não encontrado");
+            console.log(result);
+            res.send(result);
+        }
+    );
 });
 
 // Altera um cadastro
-app.put("/Cadastro/:cpf", (req, res, next) => {
+app.put("/Cadastro/:idImovel", (req, res, next) => {
     db.updateOne(
-        { cpf: req.params.cpf },
+        { idImovel: req.params.idImovel },
         {
             $set: {
-                idImovel: req.body.imovel,
+                cpf: req.body.cpf,
                 nome: req.body.nome,
                 email: req.body.email,
                 telefone: req.body.telefone,
@@ -98,8 +102,8 @@ app.put("/Cadastro/:cpf", (req, res, next) => {
 });
 
 // Remove cadastro de usuário
-app.delete("/Cadastro/:cpf", (req, res, next) => {
-    db.deleteOne({ cpf: req.params.cpf }, (err, result) => {
+app.delete("/Cadastro/:idImovel", (req, res, next) => {
+    db.deleteOne({ idImovel: req.params.idImovel }, (err, result) => {
         if (err) return console.log(`Error: ${err}`);
         console.log(`Cadastro do proprietário ${req.body.nome} removido!`);
         res.send(`Cadastro do proprietário ${req.body.nome} removido!`);
