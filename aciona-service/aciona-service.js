@@ -11,8 +11,7 @@ app.listen(porta, () => {
 const Acionamento = require("./model/acionamento");
 
 const MongoClient = require("mongodb").MongoClient;
-const uri =
-    "mongodb+srv://gabriel:teste123@cluster0.xfugt.mongodb.net/AlarmeDB?retryWrites=true&w=majority";
+const uri = "uri do mongo";
 const database_name = "AlarmeDB";
 const collection_name = "Acionamento";
 var db;
